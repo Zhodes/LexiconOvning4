@@ -245,46 +245,69 @@ class Program
     }
     static public bool IsValid(string stringToCheck)
     {
-        string checkstring = "(){}[]";
-        string strippedString = "";
+        string parenthesisStarters = "({[";
+        string parenthesisEnds = ")}]";
+        Stack<char> parenthesisStack = new Stack<char>();
         foreach (char c in stringToCheck)
         {
-            if (checkstring.Contains(c))
+            if (parenthesisStarters.Contains(c))
             {
-                strippedString += c;
+                parenthesisStack.Push(c);
             }
-        }
-        bool sIsValid = false;
-        while (strippedString.Length > 0)
-        {
-            for (int i = 0; i < strippedString.Length; i++)
+            else if (parenthesisEnds.Contains(c) )
             {
-                if (strippedString[i] == checkstring[1] | strippedString[i] == checkstring[3] | strippedString[i] == checkstring[5])
+                if (parenthesisStack.Count <= 0)
                 {
-                    if (i == 0) { return sIsValid; }
-                    if ((strippedString[i] == checkstring[1] && strippedString[i - 1] == checkstring[0]) | (strippedString[i] == checkstring[3] && strippedString[i - 1] == checkstring[2]) | (strippedString[i] == checkstring[5] && strippedString[i - 1] == checkstring[4]))
-                    {
-                        strippedString = strippedString.Remove((i - 1), 2);
-                        break;
-                    }
-                    else
-                    {
-                        sIsValid = false;
-                        return sIsValid;
-                    }
-
+                    return false;
                 }
-                else if (i + 1 == strippedString.Length) { return sIsValid; }
+                bool isMatchingParenthesis = false;
 
+                char startingParenthesisToCheck = parenthesisStack.Pop();
+                for (int i = 0; i < parenthesisStarters.Length; i++)
+                {
+                    if (c == parenthesisEnds[i] && startingParenthesisToCheck == parenthesisStarters[i])
+                    {
+                        isMatchingParenthesis = true;
+                    }
+                }
+                if (!isMatchingParenthesis) return false;
             }
-            if (strippedString.Length == 0)
-            {
-                sIsValid = true;
-                return sIsValid;
-            }
-
         }
-        return sIsValid;
+        if (parenthesisStack.Count > 0) return false;
+        else return true;
+
+
+        //bool sIsValid = false;
+        //while (parenthesisStack.Length > 0)
+        //{
+        //    for (int i = 0; i < parenthesisStack.Length; i++)
+        //    {
+        //        if (parenthesisStack[i] == parenthesisStarters[1] | parenthesisStack[i] == parenthesisStarters[3] | parenthesisStack[i] == parenthesisStarters[5])
+        //        {
+        //            if (i == 0) { return sIsValid; }
+        //            if ((parenthesisStack[i] == parenthesisStarters[1] && parenthesisStack[i - 1] == parenthesisStarters[0]) | (parenthesisStack[i] == parenthesisStarters[3] && parenthesisStack[i - 1] == parenthesisStarters[2]) | (parenthesisStack[i] == parenthesisStarters[5] && parenthesisStack[i - 1] == parenthesisStarters[4]))
+        //            {
+        //                parenthesisStack = parenthesisStack.Remove((i - 1), 2);
+        //                break;
+        //            }
+        //            else
+        //            {
+        //                sIsValid = false;
+        //                return sIsValid;
+        //            }
+
+        //        }
+        //        else if (i + 1 == parenthesisStack.Length) { return sIsValid; }
+
+        //    }
+        //    if (parenthesisStack.Length == 0)
+        //    {
+        //        sIsValid = true;
+        //        return sIsValid;
+        //    }
+
+        //}
+        //return sIsValid;
 
     }
 }
