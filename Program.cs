@@ -215,6 +215,9 @@ class Program
          * Make sure to look at the stack after pushing and and poping to see how it behaves
         */
 
+        //Övning 3 fråga 1. Simulera ännu en gång ICA-kön på papper. Denna gång med en stack. Varför är det inte så smart att använda en stack i det här fallet?
+        //för den som sist kom till kön är den som först blir betjänad och den som först var där måste vänta längst. 
+
 
         Stack<char> stack = new Stack<char>();
         const string Message = "Input a message that you would like me to reverse the order of the words in:";
