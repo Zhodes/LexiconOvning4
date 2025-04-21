@@ -240,6 +240,9 @@ class Program
          * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
          * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
          */
+
+        //övning 4 fråga 1: Vilken datastruktur annvänder du?
+        //En stack eftersom jag då enkelt kan komma åt det sista elementet. 
         Console.WriteLine("Enter a string that to check validity of:");
         Console.WriteLine($"The string {(IsValid(Console.ReadLine()) ? "is" : "isn't")} well formed.");
     }
@@ -275,40 +278,6 @@ class Program
         }
         if (parenthesisStack.Count > 0) return false;
         else return true;
-
-
-        //bool sIsValid = false;
-        //while (parenthesisStack.Length > 0)
-        //{
-        //    for (int i = 0; i < parenthesisStack.Length; i++)
-        //    {
-        //        if (parenthesisStack[i] == parenthesisStarters[1] | parenthesisStack[i] == parenthesisStarters[3] | parenthesisStack[i] == parenthesisStarters[5])
-        //        {
-        //            if (i == 0) { return sIsValid; }
-        //            if ((parenthesisStack[i] == parenthesisStarters[1] && parenthesisStack[i - 1] == parenthesisStarters[0]) | (parenthesisStack[i] == parenthesisStarters[3] && parenthesisStack[i - 1] == parenthesisStarters[2]) | (parenthesisStack[i] == parenthesisStarters[5] && parenthesisStack[i - 1] == parenthesisStarters[4]))
-        //            {
-        //                parenthesisStack = parenthesisStack.Remove((i - 1), 2);
-        //                break;
-        //            }
-        //            else
-        //            {
-        //                sIsValid = false;
-        //                return sIsValid;
-        //            }
-
-        //        }
-        //        else if (i + 1 == parenthesisStack.Length) { return sIsValid; }
-
-        //    }
-        //    if (parenthesisStack.Length == 0)
-        //    {
-        //        sIsValid = true;
-        //        return sIsValid;
-        //    }
-
-        //}
-        //return sIsValid;
-
     }
 }
 
